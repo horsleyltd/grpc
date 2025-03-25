@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/horsleyltd/grpc/service";
+
+package service;
+
+message Request {}
+
+message Response {
+  string message = 1;
+}
+
+service Service {
+  // Simple RPC 
+  rpc RequestResponse(Request) returns (Response) {}
+  // Server-side streaming RPC
+  rpc RequestResponseStream(Request) returns (stream Response) {}
+  // Client-side streaming RPC
+  rpc StreamRequestResponse(stream Request) returns (Response) {}
+  // Bi-directional streaming RPC
+  rpc StreamRequestResponseStream(stream Request) returns (stream Response) {}
+}
